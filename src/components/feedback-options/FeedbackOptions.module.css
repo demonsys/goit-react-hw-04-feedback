@@ -1,0 +1,18 @@
+.feedback__options {
+  display: flex;
+  gap: 10px;
+}
+.feedback__button {
+  padding: 3px 10px;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.1;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+.feedback__button:active {
+  background-color: #4254f8;
+}
