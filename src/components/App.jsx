@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Section from './section/Section';
-import Statistics from './statistics/Statistics';
-import FeedbackOptions from './feedback-options/FeedbackOptions';
-import Notification from './notification/Notification';
+import Section from './section';
+import Statistics from './statistics';
+import FeedbackOptions from './feedback-options';
+import Notification from './notification';
 
 class App extends Component {
   state = {
@@ -11,30 +10,29 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
-  changeStatistics = event => {
+  updateStatistics = event => {
     const feedbackType = event.target.textContent.toLowerCase();
     this.setState(state => ({
       [feedbackType]: state[feedbackType] + 1,
     }));
   };
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-  countPositiveFeedbackPercentage = () => {
-    return (this.state.good * 100) / this.countTotalFeedback();
-  };
+  countTotalFeedback = () =>
+    this.state.good + this.state.neutral + this.state.bad;
+  countPositiveFeedbackPercentage = () =>
+    (this.state.good * 100) / this.countTotalFeedback();
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.changeStatistics} />
+          <FeedbackOptions onLeaveFeedback={this.updateStatistics} />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() ? (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={this.countTotalFeedback()}
               positivePercentage={this.countPositiveFeedbackPercentage()}
             />
