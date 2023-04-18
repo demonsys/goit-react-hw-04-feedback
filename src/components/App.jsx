@@ -25,7 +25,10 @@ class App extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.updateStatistics} />
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.updateStatistics}
+          />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() ? (
